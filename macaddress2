@@ -1,0 +1,24 @@
+#!/bin/sh 
+ if [ "$1" = "" ]; then 
+    IFACE="wlan0" 
+ else 
+    IFACE="$1" 
+ fi 
+
+ HEX_ARRAY=(0 1 2 3 4 5 6 7 8 9 A B C D E F) 
+
+ function rand_hex(){ 
+    let 'RNUM=RANDOM%16' 
+    echo "${HEX_ARRAY[$RNUM]}" 
+ } 
+
+ function rand_byte(){ 
+    echo "$(rand_hex)$(rand_hex)" 
+ } 
+
+ NEW_MAC="$(rand_byte):$(rand_byte):$(rand_byte):$(rand_byte):$(rand_byte):$(rand_byte)" 
+
+ ifconfig $IFACE down 
+ ifconfig $IFACE hw ether "$NEW_MAC" 
+ ifconfig $IFACE up 
+ echo "$NEW_MAC"

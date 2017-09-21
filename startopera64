@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#exec /mnt/sdb2/opera-12.12-1680.i386.linux/opera
+/mnt/sda12/opera-12.16-1860.x86_64.linux/opera &
