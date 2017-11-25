@@ -1,6 +1,6 @@
 #!/bin/sh
 cd /tmp
-#wget  -4c https://raw.githubusercontent.com/aarf/puppylinux/master/Slimjet.desktop
+wget  -4c https://raw.githubusercontent.com/aarf/puppylinux/master/Slimjet.desktop
 
  #echo $alters
  curver="16.8.0.0"
