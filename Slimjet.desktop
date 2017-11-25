@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Slimjet
+Icon=/mnt/sda11/slimjet_amd64-16.0.8.0.tar.xz.extracted/slimjet/product_logo_48.png
+Comment=browser
+Exec=/mnt/sda11/slimjet_amd64-16.0.8.0.tar.xz.extracted/slimjet/startslimjet.sh
+Terminal=false
+Type=Application
+Categories=Internet
+GenericName=Slimjet
+Type=Application
