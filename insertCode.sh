@@ -36,4 +36,10 @@ echo "You entered:$input_text"
 
 xdotool sleep 0.3 type --clearmodifiers "${input_text//-/.}"
 
+if  [ "$codeselect" = "[url=][/url]" ] 
+then xdotool   keydown key Right; sleep 0.3; xdotool   keyup Right ;
+fi
+
+
+
  
