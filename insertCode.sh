@@ -37,9 +37,3 @@ echo "You entered:$input_text"
 xdotool sleep 0.3 type --clearmodifiers "${input_text//-/.}"
 
  
-
-#xdotool keydown key Left; sleep 1; xdotool   keyup Left
-#xdotool --repeat 3 click  Left 
-
-#xdotool keydown key BackSpace; sleep 1; xdotool keyup BackSpace
-#xdotool keydown key BackSpace; sleep 1; xdotool keyup BackSpace
