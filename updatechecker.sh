@@ -17,6 +17,8 @@ echo $name
  #wget  -4c $line -O fileurl.txt | md5sum fileurl.txt>>updatecheck_md5sum.txt
  
  wget  -4c $line  -O "$name" 
+ patterntomatch="Users Online:"
+ sed -i '/"$patterntomatch"/d' ./"$name"
 md5sum "$name">>updatecheck_md5sum.txt
 done 
 say=$(diff updatecheck_md5sum.txt /root/.config/newpagechecker/updatecheck_md5sum.txt)
