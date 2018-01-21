@@ -39,6 +39,10 @@ if [ "$say" = "$old" ]
 then true
 else xcowsay -t 0 --image /usr/share/icons/qpupster.png "$say"
 #mv lightofdawnmd5sum.txt  /root/.config/newpagechecker
-#mv updatecheck_md5sum.txt /root/.config/newpagechecker
-
+ #yes=$(Xdialog --yesno  "The reference md5sums will be updated in you click Yes"  "Choose" 10 100 ; a=$? )
+ Xdialog --yesno  "The reference md5sums will be updated in you click Yes"   5 100 ; yes=$?
+#update if yes
+if [ $yes = "0" ] 
+then mv updatecheck_md5sum.txt /root/.config/newpagechecker
+fi
 fi
