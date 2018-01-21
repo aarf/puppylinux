@@ -19,6 +19,11 @@ echo $name
  wget  -4c $line  -O "$name" 
  patterntomatch="Users Online:"
  sed -i '/"$patterntomatch"/d' ./"$name"
+ patterntomatch="Your hostname is"
+ sed -i '/"$patterntomatch"/d' ./"$name"
+ patterntomatch="Page was generated in"
+ sed -i '/"$patterntomatch"/d' ./"$name"
+ 
 md5sum "$name">>updatecheck_md5sum.txt
 done 
 say=$(diff updatecheck_md5sum.txt /root/.config/newpagechecker/updatecheck_md5sum.txt)
