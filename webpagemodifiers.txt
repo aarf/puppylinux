@@ -1,0 +1,3 @@
+"Users Online:"
+"Your hostname is"
+"Page was generated in"
