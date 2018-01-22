@@ -1,3 +1,5 @@
-"Users Online:"
-"Your hostname is"
-"Page was generated in"
+Users Online
+Your hostname is
+Page was generated in
+views
+Site ID

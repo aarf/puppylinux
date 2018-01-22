@@ -4,4 +4,4 @@ http://distro.ibiblio.org/puppylinux/
 http://bkhome.org/news/
 http://puppylinux.org/wikka/RecentChanges
 http://blog.puppylinux.com/
-
+http://woof-ce.26403.n7.nabble.com/

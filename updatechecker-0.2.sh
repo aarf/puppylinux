@@ -17,6 +17,8 @@ echo $name
  #wget  -4c $line -O fileurl.txt | md5sum fileurl.txt>>updatecheck_md5sum.txt
  
  wget  -4c $line  -O "$name" 
+ sed -i '/views</d' ./"$name"
+ sed -i '/Site ID/d' ./"$name"
  
   sed -i '/Users Online/d' ./"$name"
   sed -i '/Your hostname is/d' ./"$name"
