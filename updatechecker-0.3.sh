@@ -13,16 +13,18 @@ name="${name//\//-}"
 name="${name//\?/}" 
 name="${name//=/}" 
 echo $name
-
+rm $name
  #wget  -4c $line -O fileurl.txt | md5sum fileurl.txt>>updatecheck_md5sum.txt
  
  wget  -4c $line  -O "$name" 
- noofline=$(wc -l <$name)
+ nooflines=$(wc -l <$name)
+ echo $nooflines
  cutoff=$(echo "$((nooflines * 2 / 3))")
  echo "$cutoff"
- head -n $cutoff $name>$name
+ name2=$name-2
+ head -n $cutoff $name>$name2
  
-md5sum "$name">>updatecheck_md5sum.txt
+md5sum "$name2">>updatecheck_md5sum.txt
 done 
 say=$(diff updatecheck_md5sum.txt /root/.config/newpagechecker/updatecheck_md5sum.txt)
 #diff lightofdawn.org-blog-viewCatFatdog64 /root/.config/newpagechecker/lightofdawn.org-blog-viewCatFatdog64
