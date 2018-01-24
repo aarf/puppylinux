@@ -14,15 +14,23 @@ name="${name//\?/}"
 name="${name//=/}" 
 echo $name
 rm $name
+name=$name.txt
+rm $name
  #wget  -4c $line -O fileurl.txt | md5sum fileurl.txt>>updatecheck_md5sum.txt
  
  wget  -4c $line  -O "$name" 
  nooflines=$(wc -l <$name)
  echo $nooflines
  cutoff=$(echo "$((nooflines * 2 / 3))")
+ if [ $name = "lightofdawn.org-blog-viewCatFatdog64" ]
+ then cutoff="110"
+ fi
  echo "$cutoff"
  name2=$name-2
  head -n $cutoff $name>$name2
+ #patterntomatch="ID generation took"
+ sed -i '/Users Online/d' ./"$name2"
+ sed -i '/Header ID generation took/d' ./"$name2"
  
 md5sum "$name2">>updatecheck_md5sum.txt
 done 
