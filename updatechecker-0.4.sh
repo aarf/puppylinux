@@ -31,8 +31,12 @@ rm $name
  #patterntomatch="ID generation took"
  #sed -i '/Users Online/d' ./"$name2"
  #sed -i '/Header ID generation took/d' ./"$name2"
+ name3=${name:0:6}
+  if [ $name3 = "distro" ]
+ then name2=$(echo "$name")
+ else 
   tr '0123456789' '0' < $name > $name2
-
+fi
 md5sum "$name2">>updatecheck_md5sum.txt
 done 
 say=$(diff updatecheck_md5sum.txt /root/.config/newpagechecker/updatecheck_md5sum.txt)
