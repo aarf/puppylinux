@@ -1,4 +1,5 @@
-#!/bin/sh           
+#!/bin/sh
+sleep 150
 
 cd /tmp
 rm updatecheck_md5sum.txt
