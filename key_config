@@ -1,0 +1,210 @@
+[232:0]
+type=cmd
+enable=1
+description=Brightness down
+command=brightness-down
+comment=Darker
+
+[233:0]
+type=cmd
+enable=1
+description=Brightness up
+command=brightness-up
+comment=Brighter
+
+[122:0]
+type=mixer.so
+enable=1
+description=Vol-
+command=Mixer-Volume Down
+comment=
+
+[123:0]
+type=mixer.so
+enable=1
+description=Vol+
+command=Mixer-Volume Up
+comment=
+
+[121:0]
+type=mixer.so
+enable=1
+description=Mute
+command=Mixer-Volume Mute
+comment=
+
+[163:0]
+type=cmd
+enable=1
+description=Email
+command=thunderbird.sh
+comment=Email
+
+[180:0]
+type=cmd
+enable=1
+description=WWW
+command=defaultbrowser
+comment=Web Browser
+
+[150:0]
+type=cmd
+enable=1
+description=Touchpad control
+command=toggle-touchpad
+comment=Touchpad toggled
+
+[26:64]
+type=cmd
+enable=1
+description=Open folder
+command=rox
+comment=
+
+[45:64]
+type=cmd
+enable=1
+description=Kill window
+command=xkill
+comment=
+
+[69:8]
+type=cmd
+enable=1
+description=Launcher
+command=findnrun
+comment=
+
+[31:8]
+type=cmd
+enable=1
+description=paste image code
+command=xdotool sleep 0.3 type --clearmodifiers "[img][/img]"
+comment=[img][/img]
+
+[30:8]
+type=cmd
+enable=1
+description=paste URL and image code
+command=xdotool sleep 0.3 type --clearmodifiers "[url=][img][/img][/url]" "BackSpace"
+comment=[url][img]
+
+[30:64]
+type=cmd
+enable=1
+description=paste url only
+command=xdotool sleep 0.3 type --clearmodifiers "[url=][/url]"
+comment=[url][/url]
+
+[33:64]
+type=cmd
+enable=1
+description=puppylinux
+command=xdotool sleep 0.3 type --clearmodifiers "/join #puppylinux"
+comment=puppylinux
+
+[53:64]
+type=cmd
+enable=1
+description=passpasta
+command=xdotool sleep 0.3 type --clearmodifiers "123Asd"
+comment=passpasta
+
+[27:8]
+type=cmd
+enable=1
+description=url red
+command=xdotool sleep 0.3 type --clearmodifiers "[url=][background=red][color=white][u][/u][/color][/background][/url]"
+comment=red
+
+[25:64]
+type=cmd
+enable=1
+description=wget
+command=xdotool sleep 0.3 type --clearmodifiers "wget  -4c "
+comment=wget
+
+[58:64]
+type=cmd
+enable=1
+description=md5sum
+command=xdotool sleep 0.3 type --clearmodifiers "md5sum "
+comment=md5sum
+
+[46:8]
+type=cmd
+enable=1
+description=UPPER2lower
+command=/root/upper2lower.sh
+comment=upper2lower
+
+[56:64]
+type=cmd
+enable=1
+description=rainbow
+command=/root/rainbow-white.sh
+comment=rainbow white bold
+
+[40:8]
+type=cmd
+enable=1
+description=action dash2dot
+command=/root/actiondash2dot.sh
+comment=action dash2dot
+
+[52:64]
+type=cmd
+enable=1
+description=login
+command=/root/login.sh
+comment=login
+
+[38:64]
+type=cmd
+enable=1
+description=login aarf
+command=/root/loginaarf.sh
+comment=login aarf
+
+[42:8]
+type=cmd
+enable=1
+description=login absolute goofa
+command=xdotool sleep 0.3 type --clearmodifiers "/msg NickServ identify mypassword"
+comment=goofa login
+
+[41:8]
+type=cmd
+enable=1
+description=fish
+command=/root/gogogofish.sh
+comment=fish
+
+[24:8]
+type=cmd
+enable=1
+description=quote
+command=xdotool sleep 0.3 type --clearmodifiers "[quote][/quote] "
+comment=quote
+
+[58:8]
+type=cmd
+enable=1
+description=multi login
+command=/root/loginmulti.sh
+comment=loginm
+
+[56:8]
+type=cmd
+enable=1
+description=Insert Code
+command=/root/insertCode.sh
+comment=Insert Code
+
+[53:8]
+type=cmd
+enable=1
+description=insert code
+command=/root/insertCode-0.1.sh
+comment=insert code
+
