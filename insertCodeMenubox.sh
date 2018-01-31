@@ -6,9 +6,9 @@ codeselect=`Xdialog --stdout --clear --title "My  Choice" \
        "[img][/img]" "image" \
         "[url=][/url]" "url" \
        "[quote][/quote]" "quote"  \
-        "wget -4c " "wget" \
-        "5"  "five" \
-        "6"  "six" `  
+        "wget -4c \"\"" "wget" \
+        "KuLuSz"  "Madafakkar" \
+        "md5sum"  "md5sum" `  
         
 
 echo code is $codeselect
@@ -24,6 +24,9 @@ case "$codeselect" in
  "[quote][/quote]")
  NoLeft=8 
  NoRight=9
+ ;; 
+ "wget -4c \"\"")
+ NoLeft=1
  ;; 
  esac
 retval=$?
@@ -69,4 +72,10 @@ COUNTER=0
              let COUNTER=COUNTER+1 
          done
 #xdotool   keydown key Right; sleep 0.3; xdotool   keyup Right ;
+fi
+if  [ "$codeselect" = "wget -4c \"\"" ] 
+then 
+xdotool   keydown key Right; sleep 0.3; xdotool   keyup Right ;
+xdotool   keydown key Return; sleep 0.3; xdotool   keyup Return ;
+fi
 fi
