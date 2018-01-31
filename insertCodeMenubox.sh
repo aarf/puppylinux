@@ -1,14 +1,14 @@
 #!/bin/sh
 
 
-codeselect=`Xdialog --stdout --clear --title "My  Choice" \
-        --menubox "Hi, Choose  your choice:" 20 51 4 \
+codeselect=`Xdialog --stdout --clear --title "Choose code to type" \
+        --menubox "Hi, select your choice. The code will be typed in addition to the current clipboard entry. Be sure the active window is able to be typed to:" 20 131 4 \
        "[img][/img]" "image" \
         "[url=][/url]" "url" \
        "[quote][/quote]" "quote"  \
         "wget -4c \"\"" "wget" \
         "KuLuSz"  "Madafakkar" \
-        "md5sum"  "md5sum" `  
+        "md5sum "  "md5sum" `  
         
 
 echo code is $codeselect
@@ -78,4 +78,4 @@ then
 xdotool   keydown key Right; sleep 0.3; xdotool   keyup Right ;
 xdotool   keydown key Return; sleep 0.3; xdotool   keyup Return ;
 fi
-fi
+#fi
