@@ -46,8 +46,8 @@ fi
 md5name2=$(md5sum "$name2") 
 if [ md5nam2 = "d41d8cd98f00b204e9800998ecf8427e" ]
 then
-xcowsay -t 0 --image /usr/share/icons/qpupster.png "$name has failed to download, exiting updatechecker"
-exit
+xcowsay -t 0 --image /usr/share/icons/qpupster.png "$name has failed to download, the reference md5sums will not be updated"
+nodownload="1"
 else 
 md5sum "$name2">>updatecheck_md5sum.txt
 
@@ -57,7 +57,10 @@ say=$(diff updatecheck_md5sum.txt /root/.config/newpagechecker/updatecheck_md5su
 #diff lightofdawn.org-blog-viewCatFatdog64 /root/.config/newpagechecker/lightofdawn.org-blog-viewCatFatdog64
 
 
-
+if [ "$nodownload" = "1" ] 
+then 
+exit
+fi
 
 if [ "$say" = "$old" ]
 
