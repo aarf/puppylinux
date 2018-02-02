@@ -1,6 +1,6 @@
 #!/bin/sh
 /root/gogogofatdog.sh
-sleep 150
+#sleep 150
 
 cd /tmp
 rm updatecheck_md5sum.txt
@@ -44,7 +44,10 @@ rm $name
  tr -d 0-9 < "$name" > "$name2"
 fi
 md5name2=$(md5sum "$name2") 
-if [ md5nam2 = "d41d8cd98f00b204e9800998ecf8427e" ]
+#echo "$md5name2[0]"
+#if [ "$md5name2" = "d41d8cd98f00b204e9800998ecf8427e "$name2"" ]
+if [ "$cutoff" = "0" ]
+
 then
 xcowsay -t 0 --image /usr/share/icons/qpupster.png "$name has failed to download, the reference md5sums will not be updated"
 nodownload="1"
