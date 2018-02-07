@@ -2,7 +2,7 @@
 ##need internet connection
 #put this script  into the place where you want the portable install
 #need uextract to be installed
-#click .../slimjet_amd64-XXXXX.tar.xz.extracted/slimjet/startslimjet.sh after install to run 
+#click .../slimjet_amd64-XXXXX.tar.xz.extracted/slimjet/spotslim after install to run 
 
 wget -4c https://www.slimjet.com/en/dlpage.php 
 
@@ -16,7 +16,7 @@ curver=$(echo -e "$curver" | tail -n 1 )
 #egrep -o $RegExStr "dlpage.php" > tezt.txt
 echo "$curver"
 
-wget -4c http://www.slimjetbrowser.com/release/slimjet_amd64.tar.xz
+#wget -4c http://www.slimjetbrowser.com/release/slimjet_amd64.tar.xz
 mv slimjet_amd64.tar.xz slimjet_amd64-$curver.tar.xz
 rm dlpage.php
 
@@ -44,7 +44,7 @@ cd $dir/slimjet
  cdline=$(pwd)
  cdline="cd ""$cdline"
  echo "$cdline"
- #my gawd will you look at this nonsense the sed line below wont work if  / is in $cdline
+ # the sed line below wont work if  / is in $cdline
  cdline=$(echo ${cdline//"/"/"\/"})
  #have tried just using pwd but it has issues with either desktop link or startup link (both to come in next editions of this script) 
  #for now do these manually if you want them
@@ -52,17 +52,19 @@ cd $dir/slimjet
 #sed -i "1s/.*/$cdline/" spotslim
 #sed -i "1s/.*/#!/bin/bash/" spotslim
 #echo "#!/bin/bash" > spotslims
-echo "#!" >spotslims
+echo "#!/" >spotslims
  echo "bin/bash" >>spotslims
- tr "\n" "/" < spotslims > spotslims2
+ tr  -d "\n" < spotslims > spotslims2
+ printf "\n" >>spotslims2
  echo "$cdline" >>spotslims2
 
 wget -4c  https://raw.githubusercontent.com/aarf/puppylinux/master/prespotslim 
+preslim=$(cat prespotslim)
 
-echo "prespotslim" >>spotslims2
+echo "$preslim" >>spotslims2
 cp spotslims2 spotslim
-rm spotslim2
+rm spotslims2 prespotslim spotslims 
 #chmod startslimjet and flashpeak-slimjet 
 chmod a+x,go-rwx spotslim
- 
+ ./spotslim &
 exit
