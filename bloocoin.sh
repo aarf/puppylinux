@@ -1,11 +1,12 @@
 #!/bin/sh
 cd /tmp
+rm bloocoin.txt test1 test2
 #rm bloocoin.txt blooout3.txt blooout2.txt blooout.txt
 #wget -4c "https://coinmarketcap.com/coins/" --output-document=coin.txt 
 
 curl  "https://www.bloomberg.com/markets/currencies/asia-pacific" --output bloocoin.txt 
  #sed -e 's/bitcoin\(.*\)$/\1/' < coin.txt > out.txt
- #sed -n '/^$/!{s/<[^>]*>//g;p;}' < bloocoin.txt > blooout.txt
+ sed -n '/^$/!{s/<[^>]*>//g;p;}' < bloocoin.txt > blooout.txt
  #grep "€" < blooout.txt > blooout2.txt
  #sed -n '/Zimbabwean Dollar/,/2 Day/p' blooout2.txt > blooout3.txt
  #sed -e 's/"Zimbabwean Dollar"\(.*\)"2 Day"/\1/' < blooout2.txt > blooout3.txt
