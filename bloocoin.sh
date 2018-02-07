@@ -39,5 +39,9 @@ audthb=$(echo "$numthb * $numaud" | bc -l )
 echo "$audthb"
 printf "AUD-THB     $audthb">>test2
 #echo "$numthb*$numaud"
+numeur=$(tr "EUR\"\:\{\"USD\":[[:space:]]*" " " < test )
+eurthb=$(echo "$numthb * $numeur" | bc -l )
+printf " \r">>test2
+printf "EUR-THB     $eurthb">>test2
 xcowsay -t 15  --image /root/blomkt.jpg < test2
 
