@@ -52,5 +52,13 @@ eurthb=$(echo "$numthb * $numeur" | bc -l )
 eurthb=$(printf "%'.4f" $eurthb)
 printf " \r">>test2
 printf "EUR-THB      $eurthb">>test2
+numcny=$(grep  -o 'USD-CNY.............' blooout.txt)
+#numcny=$(printf "%'.4f" $numcny)
+#numcny=$(head -n 1 "$numcny")
+printf " \r">>test2
+ echo "$numcny"| sed -n -e '1{p;q}' >>test2
+
+
+#printf "USD-CNY      $numcny">>test2
 xcowsay -t 15  --image /root/blomkt.jpg < test2
 
