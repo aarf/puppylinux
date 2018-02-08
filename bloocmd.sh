@@ -1,8 +1,8 @@
 #!/bin/sh
 cd /tmp
-#rm bloocommod.txt bloocmdout.txt
+rm bloocommod.txt bloocmdout.txt
 
-#curl  "https://www.bloomberg.com/markets/commodities" --output bloocommod.txt 
+curl  "https://www.bloomberg.com/markets/commodities" --output bloocommod.txt 
   sed -n '/^$/!{s/<[^>]*>//g;p;}' < bloocommod.txt > bloocmdout.txt
   grep  -o 'bbl. [0-9]*.....[0-9]*' bloocmdout.txt > 2cow
 #echo "Crude 2cow " >cmdout
