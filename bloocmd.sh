@@ -17,6 +17,8 @@ sed -i '4s/^/Gold USD\//' 2cow
 sed -i '5s/^/Gold Spot USD\//' 2cow
 sed -i '6s/^/Silver USD\//' 2cow
 sed -i '7s/^/Platinum USD\//' 2cow
-
- xcowsay -t 0 --image /mnt/sda11/slimjet_amd64-17.0.9.0.tar.xz.extracted/slimjet/product_logo_128.png <2cow 
+curl "https://www.worldtimeserver.com/current_time_in_KH.aspx" --output time.txt 
+grep  -o '..:..:.....' time.txt|head -n 1 >> 2cow
+sed -i '8s/^/Cambodia Time /' 2cow
+ xcowsay -t 20 --image /mnt/sda11/slimjet_amd64-17.0.9.0.tar.xz.extracted/slimjet/product_logo_128.png <2cow 
  WTI Crude Oil 
