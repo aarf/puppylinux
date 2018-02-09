@@ -8,6 +8,8 @@ codeselect=`Xdialog --stdout --clear --title "Choose code to type" \
        "[quote][/quote]" "quote"  \
         "wget -4c \"\"" "wget" \
         "KuLuSz"  "Madafakkar" \
+        "var=(echo \"var\"  )"  "code" \
+        "echo \"var\" >> "  "code" \
         "md5sum "  "md5sum" `  
         
 
@@ -16,6 +18,14 @@ case "$codeselect" in
  "[img][/img]")
  NoLeft=6
  NoRight=7
+ ;;
+"var=(echo \"var\"  )")
+ NoLeft=7
+ NoRight=0
+ ;;
+ "echo \"var\" >> ")
+ NoLeft=8
+ NoRight=0
  ;;
  "[url=][/url]")
  NoLeft=7
