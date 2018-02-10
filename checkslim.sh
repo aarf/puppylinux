@@ -1,5 +1,6 @@
 #!/bin/sh
 cd /tmp
+sleep 150
 name="slimjet"
 line="https://www.slimjet.com/en/dlpage.php"
 #wget  -4c $line  -O "$name" 
