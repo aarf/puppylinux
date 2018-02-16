@@ -1,5 +1,6 @@
 #!/bin/sh
 cd /tmp
+rm slimjet
 sleep 150
 name="slimjet"
 line="https://www.slimjet.com/en/dlpage.php"
