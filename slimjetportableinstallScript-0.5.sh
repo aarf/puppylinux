@@ -16,7 +16,7 @@ curver=$(echo -e "$curver" | tail -n 1 )
 #egrep -o $RegExStr "dlpage.php" > tezt.txt
 echo "$curver"
 
-#wget -4c http://www.slimjetbrowser.com/release/slimjet_amd64.tar.xz
+wget -4c http://www.slimjetbrowser.com/release/slimjet_amd64.tar.xz
 mv slimjet_amd64.tar.xz slimjet_amd64-$curver.tar.xz
 rm dlpage.php
 
