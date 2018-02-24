@@ -2,7 +2,7 @@
 /root/gogogofatdog.sh
 sleep 150
 
-connected=$(ifconfig wlan0 | grep -i 'inet' )
+connected=$(ifconfig | grep -i 'inet' )
 if [ "$connected" = "" ] 
 then 
 exit
