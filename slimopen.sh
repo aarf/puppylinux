@@ -1,10 +1,10 @@
 #!/bin/sh
 #opensin slimjet
-xclip -selection primary -o>>/root/input_text.txt
+#xclip -selection primary -o>>/root/input_text.txt
 select=$( xclip -selection primary -o )
 echo $select
-input_text=`cat /root/input_text.txt`
-rm /root/input_text.txt
+#input_text=`cat /root/input_text.txt`
+#rm /root/input_text.txt
 
 
 echo "You entered:$input_text"
