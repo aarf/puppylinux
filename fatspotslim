@@ -1,0 +1,11 @@
+#!/bin/bash
+cd \/mnt\/sda11\/slimjet_amd64-18.0.1.0.tar.xz_extracted\/slimjet
+
+# Sanitize std{in,out,err} because they'll be shared with untrusted child
+# processes (http://crbug.com/376567).
+exec < /dev/null
+exec > >(exec cat)
+exec 2> >(exec cat >&2)
+
+# Note: exec -a below is a bashism.
+run-as-spot  ./flashpeak-slimjet "$@"
