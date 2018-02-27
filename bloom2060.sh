@@ -1,5 +1,5 @@
 #!/bin/sh
-#this takes the blurred image from bloomberg from the clipboard and pastes it into the browser with a proper image resoultion. need to click in the browser address bar first. activated from sven
+#this takes the blurred image from bloomberg from the clipboard and pastes it into the browser with a proper image resoultion. . activated from sven
 #xclip -selection primary -o>>/root/input_text.txt
 #input_text=`cat /root/input_text.txt`
 #rm /root/input_text.txt
