@@ -4,9 +4,19 @@ do
 	echo "Press [CTRL+C] to stop.."
 		sleep 150
 	/root/coinbork.sh
-	sleep 15
+	satsunday=$( date | grep -i "sun" )
+if [ "$satsunday" = '' ]
+then 
+satsunday=$( date | grep -i "sat" )
+fi
+
+if [ "$satsunday" = '' ]
+then 
+sleep 15
 	/root/bloocoin.sh
 	sleep 15
 	/root/bloocmd.sh
-	sleep 600
+fi
+	
+	sleep 1500
 done
