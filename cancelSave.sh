@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#wmpoweroff &
+wmpoweroff &
 
 sleep 2
 
