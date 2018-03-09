@@ -14,6 +14,9 @@ codeselect=`Xdialog --stdout --clear --title "Choose code to type" \
         
 
 echo code is $codeselect
-
+if [ "$codeselect" = "" ]
+then
+exit
+fi
 #/mnt/sda12/opera-12.16-1860.x86_64.linux/opera "$codeselect"
 defaultbrowser "$codeselect"
