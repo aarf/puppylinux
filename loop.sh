@@ -1,4 +1,15 @@
 #!/bin/sh
+sleep 150
+connected=$( ifconfig | grep -v '127.0.0' | grep -i 'inet' )
+
+echo $connected
+
+
+if [ "$connected" = "" ] 
+then 
+exit
+fi
+
 while :
 do
 	echo "Press [CTRL+C] to stop.."
