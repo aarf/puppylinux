@@ -1,0 +1,41 @@
+<JWM>
+	<Tray autohide="false" insert="right" x="0" y="-1" border="1" width="0" height="28" layer="above" layout="horizontal" halign="left" valign="bottom" >
+		<!-- Additional TrayButton attribute: label -->
+		<TrayButton label="Menu" icon="mini-dog.xpm">root:3</TrayButton>
+		<TrayButton popup="Show Desktop" icon="mini-desktop.xpm">showdesktop</TrayButton>
+		<TrayButton popup="Virtual Keyboard" icon="mini-keyboard.xpm">exec:xvkbd-wrapper</TrayButton>
+		<TrayButton popup="ClipIt" icon="clipit-trayicon.svg">exec:clipit</TrayButton>
+		<TrayButton popup="Galculator scientific calculator" icon="galculator.png">exec:galculator</TrayButton>
+		<TrayButton popup="Geany text editor" icon="geany.xpm">exec:geany</TrayButton>
+		<TrayButton popup="mtPaint-snapshot screen capture" icon="mini-camera.xpm">exec:/usr/bin/mtpaintsnapshot.sh</TrayButton>
+		<TrayButton popup="pFind file finder" icon="/usr/share/pixmaps/puppy/find.svg">exec:pfind</TrayButton>
+		<TrayButton popup="ROX-Filer file manager" icon="mini-filemgr.xpm">exec:rox /root</TrayButton>
+		<TrayButton popup="InsertCode" icon="mini-sh.xpm">exec:/root/insertCodeMenubox.sh</TrayButton>
+		
+		<TrayButton popup="Sakura terminal emulator" icon="mini-sh.xpm">exec:sakura</TrayButton>
+		<TrayButton popup="Sakura terminal emulator" icon="/usr/local/share/icons/mini-world.xpm">exec:/root/googlemapsslimopen.sh</TrayButton>
+		
+		<!-- Additional Pager attributes; width, height -->
+		<Pager/>
+		<!-- Additional TaskList attribute: maxwidth -->
+		<TaskList maxwidth="200"/>
+		<Dock/>
+		<!-- Additional Swallow attribute: height -->
+	<!--	<Swallow name="blinky">
+			blinkydelayed -bg "#DCDAD5"
+		</Swallow> -->
+	<!--	<Swallow name="xtmix-launcher">
+			xtmix -launch
+		</Swallow> -->
+	<!--	<Swallow name="asapm">
+			asapmshell -u 4
+		</Swallow> -->
+	<!--	<Swallow name="freememapplet" width="34">
+			freememappletshell
+		</Swallow> -->
+		<Swallow name="xload" width="32">
+			xload -nolabel -bg "#888888" -fg red -hl white
+		</Swallow>
+		<Clock format="%H:%M">minixcal</Clock>
+	</Tray>
+</JWM>
