@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<JWM>
+	<Tray autohide="off" insert="right" x="0" y="-1" width="0" height="30" layer="above" layout="horizontal" halign="left" valign="bottom" >
+		<!-- Additional TrayButton attribute: label -->
+		<TrayButton label="Menu" icon="puppy.svg" border="true">root:3</TrayButton>
+		<TrayButton popup="Show Desktop" icon="/usr/local/lib/X11/pixmaps/x48.png" border="true">showdesktop</TrayButton>
+		<TrayButton popup="Terminal" icon="/usr/local/lib/X11/pixmaps/console48.png" border="true">exec:defaultterminal</TrayButton>
+		<TrayButton popup="Transmission BitTorrent client" icon="/usr/share/pixmaps/transmission.png">exec:transmission-gtk </TrayButton>
+		<TrayButton popup="InsertCode" icon="/usr/local/lib/X11/pixmaps/module24.xpm">exec:/root/insertCodeMenubox.sh</TrayButton>
+		<TrayButton popup="pFind file finder" icon="/usr/share/pixmaps/puppy/find.svg">exec:pfind</TrayButton>
+		<TrayButton popup="Geany" icon="/usr/share/icons/hicolor/scalable/apps/geany.svg">exec:geany</TrayButton>
+		<TrayButton popup="Galculator" icon="galculator.xpm">exec:galculator</TrayButton>
+		<TrayButton popup="ClipIt" icon="/usr/share/pixmaps/puppy/clipboard.svg">exec:clipit</TrayButton>
+		<TrayButton popup="ROX-Filer file manager" icon="/usr/share/pixmaps/puppy/open.svg">exec:roxfiler</TrayButton>
+				<TrayButton popup="google maps" icon="/root/worldg.jpeg">exec:/root/googlemapsslimopen.sh</TrayButton>
+		
+		<Pager/>
+		<!-- Additional TaskList attribute: maxwidth -->
+		<TaskList maxwidth="200"/>
+		<Dock/>
+		<Swallow name="xload" width="32">xload -nolabel -bg "#888888" -fg "#222222" -hl "#4C7CC1"</Swallow>
+		<!-- Additional Swallow attribute: height -->
+		<Spacer width="4"/>
+			<Clock format="%a %d %b %l:%M %p">exec:pupclockset</Clock>
+	</Tray>
+</JWM>
