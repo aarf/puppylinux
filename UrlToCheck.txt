@@ -5,3 +5,6 @@ http://bkhome.org/news/
 http://puppylinux.org/wikka/RecentChanges
 http://blog.puppylinux.com/
 http://woof-ce.26403.n7.nabble.com/
+http://distro.ibiblio.org/quirky/quirky6/amd64/releases/
+http://smokey01.com/newsletters/
+http://distro.ibiblio.org/easyos/amd64/releases/
