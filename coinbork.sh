@@ -17,7 +17,8 @@ head -n 14 < out2.txt > out3.txt
 tr "@" " " < output5.txt > output6.txt
 #tr " " "\n" < output6.txt > output7.txt
 #wget -4c "https://files.coinmarketcap.com/generated/sparklines/1.png"
-wget  -4c https://s2.coinmarketcap.com/generated/sparklines/1.png
+#wget  -4c https://s2.coinmarketcap.com/generated/sparklines/1.png
+wget  -4c https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/1.png
 #xcowsay -t 9 --image /root/btcimage.jpeg < output6.txt
 gm composite 1.png /root/black.png  combined.png
 
