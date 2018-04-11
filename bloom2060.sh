@@ -10,7 +10,7 @@ echo $select
 #echo "You entered:$input_text"
 #mod2060=${select//60/2060}
 mod2060=${select//60/2060}
-/mnt/sda11/slimjet_amd64-18.0.1.0.tar.xz_extracted/slimjet/spotslim  "$mod2060"
+/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz*extracted/slimjet/spotslim  "$mod2060"
 
 
 #xdotool sleep 0.3 type --clearmodifiers "${select//60/2060}"

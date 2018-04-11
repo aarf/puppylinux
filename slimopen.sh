@@ -9,7 +9,7 @@ echo $select
 
 echo "You entered:$input_text"
 
-/mnt/sda11/slimjet_amd64-18.0.1.0.tar.xz_extracted/slimjet/spotslim "$select"
+/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz*extracted/slimjet/spotslim "$select"
 
 
 xdotool   keydown key Return; sleep 0.3; xdotool   keyup Return ;
