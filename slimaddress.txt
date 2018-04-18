@@ -1,0 +1,1 @@
+/mnt/sda11/slimjet_amd64-18.0.4.0.tar.xz.extracted/slimjet/spotslim
