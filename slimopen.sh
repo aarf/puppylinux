@@ -7,10 +7,13 @@ echo $select
 #rm /root/input_text.txt
 
 
-echo "You entered:$input_text"
+#echo "You entered:$input_text"
+slimaddress=$( cat slimaddress.txt )
 
-/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz*extracted/slimjet/spotslim "$select"
-
+echo $slimaddress
+#/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz*extracted/slimjet/spotslim "$select"
+echo $( $slimaddress   "$select" ) 
+sleep 25
 
 xdotool   keydown key Return; sleep 0.3; xdotool   keyup Return ;
 

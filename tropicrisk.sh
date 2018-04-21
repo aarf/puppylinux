@@ -12,7 +12,9 @@ noactive=$(grep -i 'no active' main*)
 if [ "$noactive" = "" ] 
 then
 #/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz_extracted/slimjet/spotslim http://www.tropicalstormrisk.com/tracker/dynamic/main.html
-/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz.extracted/slimjet/spotslim http://www.tropicalstormrisk.com/tracker/dynamic/main.html
+#/mnt/sda11/slimjet_amd64-18.0.3.0.tar.xz.extracted/slimjet/spotslim http://www.tropicalstormrisk.com/tracker/dynamic/main.html
+slimaddress=$( cat slimaddress.txt )
+echo $( $slimaddress   http://www.tropicalstormrisk.com/tracker/dynamic/main.html ) 
 
 fi  
 
