@@ -1,2 +1,2 @@
 #!/bin/sh
- $(cat slimaddress.txt)
+ $(cat /root/slimaddress.txt)
